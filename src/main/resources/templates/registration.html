@@ -3,17 +3,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>Insert title here</title>
+<script>
+</script>
 </head>
 <body>
-<form th:action="@{/createUser}" method="post">
+<form th:action="@{/createUser}" method="post" th:object="${user}" onclick="return pchecker()">
+<div id="error"></div>
     <table>
         <tr>
             <td>First Name:</td>
-            <td><input type="text" name="firstName" /> </td>
+            <td><input type="text" name="firstName" th:field="*{firstName}"/> </td>
+            <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name Error</td>
         </tr>
         <tr>
             <td>Last Name:</td>
-            <td><input type="text" name="lastName" /> </td>
+            <td><input type="text" name="lastName" th:field="*{lastName}"/> </td>
+            <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">LastName Error</td>
         </tr>
         <tr>
             <td>Email:</td>
@@ -25,14 +30,31 @@
         </tr> 
          <tr>
             <td>Password:</td>
-            <td><input type="password" name="password" /> </td>
+            <td><input type="password" name="password" id="password" /> </td>
         </tr> 
          <tr>
             <td>Repeat Password:</td>
-            <td><input type="text" name="passwordConfirm" /> </td>
+            <td><input type="text" name="passwordConfirm" id="confirm" /> </td>
         </tr> 
     </table>
-    <input type="submit" value="Submit"/>
+    <input type="submit" value="Submit" id="submit"/>
 </form>
+<script>
+function pchecker()
+{
+	var btn=document.getElementById('submit');
+	btn.onclick=function()
+			{
+		     var password= document.getElementById('password');
+		     var confirmPassword=document.getElementById('confirm');
+		     if(password!==confirmPassword)
+		    	 {
+		    	 document.getElementById("error").innerHTML="<h4>Error password do not match</h4>";
+		    	 return false;
+		    	 }
+		     
+			}
+	};
+</script>
 </body>
 </html>

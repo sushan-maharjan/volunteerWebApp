@@ -2,9 +2,12 @@ package com.gemasu.volunteerWebApp.conroller;
 
 import java.security.Principal;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,13 +23,15 @@ public class UserController {
 	UserService userService;
 	
 	@GetMapping("/register")
-	public String registerForm(){
+	public String registerForm(User user){
 		return "registration";
 	}
 	
 	@RequestMapping(value= "/createUser", method = RequestMethod.POST)
-	public String register(User user, Principal principal, Model model){
-		System.out.println("saveeee");
+	public String register(@Valid User user, BindingResult bindingResult, Principal principal, Model model){
+		if(bindingResult.hasErrors()){
+			return "registration";
+		}
 		userService.save(user);
 		if(principal!=null){
 			model.addAttribute("user", principal.getName());
@@ -34,6 +39,7 @@ public class UserController {
 		}
 		return "redirect:/login";
 	} 
+	
 	@GetMapping("/viewUser")
 	public String profile(Model model, Principal principal){
 			model.addAttribute("profile", userService.findByUserName(principal.getName()));

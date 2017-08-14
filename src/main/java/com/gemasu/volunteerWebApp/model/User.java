@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name="user")
@@ -18,14 +21,19 @@ public class User {
 	@Id
 	@GeneratedValue
 	private int id;
+	@NotEmpty
 	@Column(name="firstName")
 	private String firstName;
+	@NotEmpty
 	@Column(name="lastName")
 	private String lastName;
+
 	private String email;
 	@Column(name="hours")
 	private String noOfHoursVolunteered;
+	@NotNull
 	private String username;
+	
     private String password;
     @Transient
     private String passwordConfirm;

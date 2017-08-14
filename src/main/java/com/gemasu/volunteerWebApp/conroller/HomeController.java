@@ -21,12 +21,12 @@ public class HomeController {
 		}
 		return "home";
 	}
-
 	
 	@GetMapping("/addProject")
 	public String addProject(){
 		return "addProject";
 	}
+	
 	@RequestMapping("/login")
 	public String login() {
 		return "login";
