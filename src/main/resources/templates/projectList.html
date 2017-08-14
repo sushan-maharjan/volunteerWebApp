@@ -16,29 +16,21 @@
 	
 	<div class="container">
 
-		<!-- Teams -->
-		<div th:if="${not #lists.isEmpty(persons)}">
+		<!-- List -->
+		<div th:if="${not #lists.isEmpty(projects)}">
 			<h2>Persons</h2>
 			<table class="table table-striped">
 				<thead>
 		        <tr>
-		        	<th>First Name</th>
-		            <th>Last Name</th>
-		            <th>Email</th>
-		            <th>Phone</th>
-		            <th>Edit</th>
+		        	<th>Name</th>
 		        </tr>
 		    </thead>
-				<tr th:each="person : ${persons}">
-					<td th:text="${person.firstName}"></td>
-			        <td th:text="${person.lastName}"></td>
-			        <td th:text="${person.email}"></td>
-			        <td th:text="${person.phone}"></td>
-			        <td><a th:href="@{/person/} + ${person.id}">Edit</a></td>
+				<tr th:each="project : ${projects}">
+			        <td th:text="${project.name}"></td>
 			    </tr>
 			</table>
 		</div>
-		<!-- Teams -->
+		<!-- List -->
 		
 	</div><!-- Container -->
 
