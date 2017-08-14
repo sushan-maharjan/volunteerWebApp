@@ -19,30 +19,15 @@ public class ProjectService {
 	private String webserviceUrl;
 	
 	private RestTemplate restTemplate = new RestTemplate();
-
+	
+	
 	public List<Project> getAll() {
-		System.out.println("***Callin Webservice " );
-		
-		//List<Project> projects = (List<Project>) restTemplate.getForObject(webserviceUrl + "/project/", Project.class);
 		ResponseEntity<List<Project>> projectResponse =
 		        restTemplate.exchange(webserviceUrl + "/project/",
 		                    HttpMethod.GET, null, new ParameterizedTypeReference<List<Project>>() {
 		            });
 		List<Project> projects = projectResponse.getBody();
-
-        //List<LinkedHashMap<String, Object>> projectsMap = restTemplate.getForObject(webserviceUrl + "/project/", List.class);
-        
-		
-		System.out.println("Result from Webservice: " + projects);
-		
-		/*
-		ResponseEntity<String> result = restTemplate.exchange(webserviceUrl + "/project/", HttpMethod.GET, null,
-				new ParameterizedTypeReference<String>() {
-				});
-		System.out.println("Result from Webservice: " + result);
-		*/
-		
-		//System.out.println("Get Orders: " + result);
+		//System.out.println("Result from Webservice: " + projects);
 		return projects;
 	}
 }
