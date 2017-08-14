@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div th:if="${user} != null">
+		<h1 th:text="'Welcome, ' + ${user}"></h1>
+	</div>
+	<div th:if="${user}==null">
+	<a th:href="@{/login}">Login</a>
+	</div>
+	<a th:href="@{/register}">Register</a>
+	<br />
+	<a th:href="@{/viewUser}">Profile</a>
+	<br />
+	<a th:href="@{/addProject}">Add Project</a>
+	<a th:href="@{/viewAllUsers}">View Users</a>
+	<!-- <div th:if="${#authorization.expression('isAuthenticated()')}"> -->
+		<div th:if="${user} != null">
+	<form method="post" th:action="@{/logout}">
+		<button type="submit">LOGOUT</button>
+	</form>
+	</div>
+</body>
+</html>

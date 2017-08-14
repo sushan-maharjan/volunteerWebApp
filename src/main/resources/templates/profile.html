@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Insert title here</title>
+</head>
+<body>
+<form method="post" th:action="@{/updateUser}">
+	First Name:
+	<input type="text" placeholder="First Name"  name="firstName" th:value="${profile.firstName}"/>
+    <br/>
+    Last Name:
+    <input type="text" placeholder="Last Name"  name="lastName" th:value="${profile.lastName}"/>
+    <br/>
+    Email:
+	<input type="text" placeholder="Email" name="email" th:value="${profile.email}"/>
+    <br/>
+    Username:    
+	<input type="text" name="username" th:value="${profile.username}"  th:readonly="true"/>
+	 <br/>
+	Hours Volunteered:
+	<input type="text" name="hours" th:value="${profile.noOfHoursVolunteered}" th:readonly="true"/>
+	<input type="hidden" placeholder="Password" name="password" th:value="${profile.password}"/>
+   
+    <br/>
+     <input type="hidden" name="id" th:value="${profile.id}"/> 
+
+    <button type="submit">Update</button>
+</form>
+<a th:href="@{'/deleteUser/'+${profile.username}}">Deactivate your Account</a>
+</body>
+</html>
