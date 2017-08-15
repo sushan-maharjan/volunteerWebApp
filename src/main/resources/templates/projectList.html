@@ -22,21 +22,21 @@
 			<table class="table table-striped">
 				<thead>
 		        <tr>
-
-
+		        	<th> </th>
 		        	<th>Name</th>
 		        	<th>Category</th>
 		        	<th>Status</th>
 		        	<th>Start Date</th>
 		        	<th>End Date</th>
 		        	<th></th>
+		        	
 
 		        </tr>
 		    </thead>
 				<tr th:each="project : ${projects}">
-				
-		
-			  
+						 <td>
+			        	<a th:href="@{'../project/' + ${project.id}}"> view</a>
+			        </td>
 			        <td th:text="${project.name}"></td>
 			        <td th:text="${project.category}"></td>
 			        <td th:text="${project.status}"></td>
