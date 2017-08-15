@@ -64,6 +64,15 @@ public class ProjectController {
 		model.addAttribute("activities",activityService.getActivityByProject(id));
 		return "projectActivity";
 	}
+	@RequestMapping("/getactivites/{id}")
+	public String getActivities(Model model, @PathVariable int id, Activity activity){
+		model.addAttribute("activity",activity);
+		//Retrieve project
+		model.addAttribute("project",projectService.getOne(id));
+		//Retrieve activities of the project
+		model.addAttribute("activities",activityService.getActivityByProject(id));
+		return "activities";
+	}
 	
 	
 	

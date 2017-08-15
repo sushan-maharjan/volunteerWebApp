@@ -12,18 +12,31 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header">*********MENU*************</div>
+	<div th:if="${not #lists.isEmpty(activities)}">
+			<h2>Projects</h2>
+			<table class="table table-striped">
+				<thead>
+		        <tr>
+		        
+		        	<th>Name</th>
+		        	
+		        	 </tr>
+		    </thead>
+				<tr th:each="activity : ${activities}">
+						
+			        <td th:text="${activity.name}"></td>
+			        
+			        <td>
+			        	<a th:href="@{'../project/edit/' + ${project.id}}"> <span class="glyphicon glyphicon-pencil"></span></a>
+			        </td>
+			        <td>
+			        	<a th:href="@{'../project/add_activity/' + ${project.id}}"> <span class="glyphicon glyphicon-list-alt"></span></a>
+			        </td>
 
- Project Name:  <p th:text="${project.name}"></p>
- mazimum number of Volunteers:  <p th:text="${project.maxNumOfMemebers}"></p>
- Volunteers: <p th:text="${project.user}"></p>
-  Organization name : <p th:text="${project.organization.name}"></p>
-   Organization Details: <p th:text="${project.organization.description}"></p>
-  Project Description: <p th:text="${project.description}"></p>
-  <a th:href="@{'../project/getactivites/' + ${project.id}}"> view Activities in this project</a>
-  
-  
-  <button type="submit" class="btn btn-default">Apply</button>
-  
+			    </tr>
+			</table>
+		</div>
+
 
 </body>
 </html>
