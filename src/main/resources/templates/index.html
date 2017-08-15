@@ -1,11 +1,11 @@
-
+<!DOCTYPE html>
 <html lang="en" 
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 	 
 <head>
-  <title>Volunteer</title>
+  <title>Coffee Shop</title>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
@@ -17,9 +17,37 @@
 <body>
 	
 	<div th:replace="fragments/header :: header">*********MENU*************</div>
-	<div th:if="${user} != null">
-		<h1 th:text="'Welcome, ' + ${user}"></h1>
-	</div>
+	
+	<!-- Body -->
+	
+	<div class="container">
+	
+		<!-- Products -->
+		<div th:if="${not #lists.isEmpty(products)}">
+			<h2>Our Products</h2>
+			<table class="table table-striped">
+				<thead>
+		        <tr>
+		        	<th>Type</th>
+		            <th>Name</th>
+		            <th>Description</th>
+		            <th>Price</th>
+		        </tr>
+		    </thead>
+				<tr th:each="product : ${products}">
+					<td th:text="${product.productType}"></td>
+			        <td th:text="${product.productName}"></td>
+			        <td th:text="${product.description}"></td>
+			        <td th:text="${product.price}"></td>
 
+			    </tr>
+			</table>
+		</div>
+		<!-- Orders -->
+		
+	</div><!-- Container -->
+	
+	
+	
 </body>
 </html>

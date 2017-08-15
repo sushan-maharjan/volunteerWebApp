@@ -42,8 +42,10 @@ public class UserController {
 	
 	@GetMapping("/viewUser")
 	public String profile(Model model, Principal principal){
-			model.addAttribute("profile", userService.findByUserName(principal.getName()));
-			return "profile";
+			model.addAttribute("user", userService.findByUserName(principal.getName()));
+			model.addAttribute("title", "Update");
+			model.addAttribute("readOnly","true");
+			return "registration";
 	}
 	@PostMapping("/updateUser")
 	public String updateProfile(User user){

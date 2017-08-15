@@ -6,13 +6,11 @@
 <title>Register your Account</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-	<link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+<link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
           th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
           rel="stylesheet" media="screen"/>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
-  	
-        
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>          
 </head>
 	<body>
 		<div th:replace="fragments/header :: header">*********MENU*************</div>
@@ -31,31 +29,16 @@
 		  </div>
 		  <div class="form-group">
 		    <label for="email">Email</label>
-		    <input type="email" class="form-control" th:field="*{user.email}" required="required"/>
-		  </div>
-		  
-		  <div class="form-group">
-		    <label for="username">UserName</label>
-		    <input type="text" class="form-control" th:field="*{user.username}" required="required" th:readonly="${readOnly}"/>
+		    <input type="text" class="form-control" th:field="*{user.email}" required="required"/>
 		  </div>
 
 		  <div class="form-group">
 		    <label for="password">Password</label>
-		    <input type="password" class="form-control" th:field="*{user.password}" required="required" />
+		    <input type="password" class="form-control" th:field="*{user.password}" required="required"/>
 		  </div>
-		  
-		   <div class="form-group">
-		    <label for="repeatPassword">Password</label>
-		    <input type="password" class="form-control" th:field="*{user.passwordConfirm}" required="required" />
-		  </div>
-		  
 		  <button type="submit" class="btn btn-default">Submit</button>
 		  <input type="hidden" class="form-control" th:field="*{user.id}"/>
 		</form>
-		<br/>
-		<div class="btn btn-default" th:if="${readOnly}">
-			<a th:href="@{'/deleteUser/'+${user.username}}">Deactivate your Account</a>
-		</div>
 	</div><!-- Container -->
 
 </body>

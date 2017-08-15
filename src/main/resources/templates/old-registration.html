@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>Insert title here</title>
+<script>
+function pchecker()
+{
+	var btn=document.getElementById('submit');
+	btn.onclick=function()
+			{
+		     var password= document.getElementById('password');
+		     var confirmPassword=document.getElementById('confirm');
+		     if(password!==confirmPassword)
+		    	 {
+		    	 document.getElementById("error").innerHTML="<h4>Error password do not match</h4>";
+		    	 return false;
+		    	 }
+		     
+			}
+	};
+</script>
+</head>
+<body>
+<form th:action="@{/createUser}" method="post">
+    <table>
+        <tr>
+            <td>First Name:</td>
+            <td><input type="text" name="firstName" /> </td>
+        </tr>
+        <tr>
+            <td>Last Name:</td>
+            <td><input type="text" name="lastName" /> </td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="email" name="email" /> </td>
+        </tr>
+        <tr>
+            <td>UserName:</td>
+            <td><input type="text" name="username" /> </td>
+        </tr> 
+         <tr>
+            <td>Password:</td>
+            <td><input type="password" name="password" /> </td>
+        </tr> 
+         <tr>
+            <td>Repeat Password:</td>
+            <td><input type="text" name="passwordConfirm" /> </td>
+        </tr> 
+    </table>
+    <input type="submit" value="Submit"/>
+</form>
+</body>
+</html>
