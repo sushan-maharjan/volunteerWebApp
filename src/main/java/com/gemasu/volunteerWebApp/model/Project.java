@@ -107,4 +107,11 @@ public class Project {
 
 	}
 
+	@Override
+	public String toString() {
+		return "Project [id=" + id + ", maxNumOfMemebers=" + maxNumOfMemebers + ", name=" + name + ", StartDate="
+				+ StartDate + ", endDate=" + endDate + ", user=" + user + ", activities=" + activities
+				+ ", organization=" + organization + ", category=" + category + ", status=" + status + "]";
+	}
+
 }

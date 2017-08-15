@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.gemasu.volunteerWebApp.model.Organization;
 import com.gemasu.volunteerWebApp.model.Project;
 
 @Service
@@ -27,12 +28,51 @@ public class ProjectService {
 
 	private RestTemplate restTemplate = new RestTemplate();
 
+	/*
+	 * **********************This belongs to organizationService
+	 */
+	public List<Organization> getOrganizations(){
+		ResponseEntity<List<Organization>> response = restTemplate.exchange(webserviceUrl + "/organization/",
+				HttpMethod.GET, null, new ParameterizedTypeReference<List<Organization>>() {
+				});
+		List<Organization> organizations = response.getBody(); 
+		return organizations;
+	}
+	
+	/*
+	 * **********************This belongs to organizationService
+	 */
+	public Organization getOrganization(Integer id) {
+		// URL
+		String url = webserviceUrl + "/organization/{id}";
+
+		// URL Parameters
+		Map<String, String> uriParams = new HashMap<String, String>();
+		uriParams.put("id", id.toString());
+
+		// Query parameters
+		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url);
+
+		//System.out.println(builder.buildAndExpand(uriParams).toUri());
+
+		ResponseEntity<Organization> response = restTemplate.exchange(builder.buildAndExpand(uriParams).toUri(),
+				HttpMethod.GET, null, new ParameterizedTypeReference<Organization>() {
+				});
+
+		Organization organization = response.getBody();
+		return organization;
+	}
+	
+	/*
+	 * Get All projects
+	 * 
+	 * @Return	Collection of projects
+	 */
 	public List<Project> getAll() {
 		ResponseEntity<List<Project>> projectResponse = restTemplate.exchange(webserviceUrl + "/project/",
 				HttpMethod.GET, null, new ParameterizedTypeReference<List<Project>>() {
 				});
 		List<Project> projects = projectResponse.getBody();
-		// System.out.println("Result from Webservice: " + projects);
 		return projects;
 	}
 
@@ -44,16 +84,16 @@ public class ProjectService {
 	 */
 	public Project getOne(Integer id) {
 		// URL
-		webserviceUrl = webserviceUrl + "/project/{projectId}";
+		String url = webserviceUrl + "/project/{id_project}";
 
 		// URL Parameters
 		Map<String, String> uriParams = new HashMap<String, String>();
-		uriParams.put("projectId", id.toString());
+		uriParams.put("id_project", id.toString());
 
 		// Query parameters
-		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(webserviceUrl);
+		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url);
 
-		System.out.println(builder.buildAndExpand(uriParams).toUri());
+		//System.out.println(builder.buildAndExpand(uriParams).toUri());
 
 		ResponseEntity<Project> response = restTemplate.exchange(builder.buildAndExpand(uriParams).toUri(),
 				HttpMethod.GET, null, new ParameterizedTypeReference<Project>() {
@@ -63,22 +103,16 @@ public class ProjectService {
 		return project;
 	}
 
+	/*
+	 * Create a New Project
+	 * 
+	 * @Param	id	Integer Project id
+	 * @Return	Project Object
+	 */
 	public void create(Project project) {
-
-		HttpHeaders headers = new HttpHeaders();
-		headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-
-		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(webserviceUrl + "/project/").queryParam("id",
-				project.getId());
-
-		HttpEntity<?> entity = new HttpEntity<>(headers);
-
-		HttpEntity<Project> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity,
-				new ParameterizedTypeReference<Project>() {
-				});
-
-		// Project project = response.getBody();
-		// System.out.println("Result from Webservice: " + projects);
+		// URL
+		String url = webserviceUrl + "/project/create";
+	    restTemplate.postForObject( url, project, Project.class);
 
 	}
 }
