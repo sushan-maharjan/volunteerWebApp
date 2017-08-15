@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Spring Boot Thymeleaf Hello World Example</title>
+<title>Volunteer App - Project List</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
@@ -22,14 +22,30 @@
 			<table class="table table-striped">
 				<thead>
 		        <tr>
-		        	<th>link</th>
-		        	<th>name</th>
+
+
+		        	<th>Name</th>
+		        	<th>Category</th>
+		        	<th>Status</th>
+		        	<th>Start Date</th>
+		        	<th>End Date</th>
+		        	<th></th>
+
 		        </tr>
 		    </thead>
 				<tr th:each="project : ${projects}">
 				
 		
-			          <td th:text="${project.name}"></td>
+			  
+			        <td th:text="${project.name}"></td>
+			        <td th:text="${project.category}"></td>
+			        <td th:text="${project.status}"></td>
+			        <td th:text="${project.StartDate}"></td>
+			        <td th:text="${project.endDate}"></td>
+			        <td>
+			        	<a th:href="@{'../project/edit/' + ${project.id}}"> <span class="glyphicon glyphicon-pencil"></span></a>
+			        </td>
+
 			    </tr>
 			</table>
 		</div>
