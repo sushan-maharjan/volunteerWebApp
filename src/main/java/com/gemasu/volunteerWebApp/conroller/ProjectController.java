@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.gemasu.volunteerWebApp.model.Activity;
 import com.gemasu.volunteerWebApp.model.Organization;
 import com.gemasu.volunteerWebApp.model.Project;
+import com.gemasu.volunteerWebApp.service.ActivityService;
 import com.gemasu.volunteerWebApp.service.ProjectService;
 
 @Controller
@@ -22,12 +24,21 @@ public class ProjectController {
 	@Autowired
 	ProjectService projectService;
 	
+	@Autowired
+	ActivityService activityService;
+	
+	/*
+	 * 
+	 */
 	@RequestMapping("/list")
 	public String getAll(Model model){
 		model.addAttribute("projects", projectService.getAll());
 		return "projectList";
 	}
 	
+	/*
+	 * 
+	 */
 	@RequestMapping("/edit/{id}")
 	public String getOne(Model model, @PathVariable int id){
 		//Get all organizations
@@ -40,6 +51,21 @@ public class ProjectController {
 		model.addAttribute("project",projectService.getOne(id));
 		return "project";
 	}
+	
+	/*
+	 * 
+	 */
+	@RequestMapping("/add_activity/{id}")
+	public String showActivity(Model model, @PathVariable int id, Activity activity){
+		model.addAttribute("activity",activity);
+		//Retrieve project
+		model.addAttribute("project",projectService.getOne(id));
+		//Retrieve activities of the project
+		model.addAttribute("activities",activityService.getActivityByProject(id));
+		return "projectActivity";
+	}
+	
+	
 	
 	
 	@RequestMapping("/{id}")
