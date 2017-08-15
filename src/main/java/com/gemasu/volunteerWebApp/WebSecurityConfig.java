@@ -18,27 +18,30 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	public void configure(HttpSecurity http) throws Exception{
 		
-		
-		http
-			.authorizeRequests()
-				.antMatchers("/webjars/**").permitAll()
-				.antMatchers("/static/**", "/", "/home", "/index", "/css/**", "/fonts/**", "/js/**", "/images/**", "**/favicon.ico").permitAll()
-				.antMatchers("/static/**", "/css/**", "/fonts/**", "/js/**", "/images/**", "**/favicon.ico").anonymous()
-				.antMatchers("/css/**", "/js/**", "/","/register","/home","/login","/createUser").permitAll()
-				.antMatchers("/addProject").hasAuthority("ADMIN")
-				.anyRequest().authenticated()
-				.and()
-			.formLogin()
-				.loginPage("/login")
-//				.defaultSuccessUrl("/secure")
-				.failureUrl("/loginError")
-				.permitAll()
-				.and()
-				
-				.logout()
-	            	.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-	            	.logoutSuccessUrl("/")
-	                .permitAll();
+		http.authorizeRequests()
+		.antMatchers("/**").permitAll();
+
+//			http
+//			.authorizeRequests()
+//				.antMatchers("/webjars/**").permitAll()
+//				.antMatchers("/static/**", "/", "/home", "/index", "/css/**", "/fonts/**", "/js/**", "/images/**", "**/favicon.ico").permitAll()
+//				.antMatchers("/static/**", "/css/**", "/fonts/**", "/js/**", "/images/**", "**/favicon.ico").anonymous()
+//				.antMatchers("/css/**", "/js/**", "/","/register","/home","/login","/createUser").permitAll()
+//				.antMatchers("/addProject").hasAuthority("ADMIN")
+//				.anyRequest().authenticated()
+//				.and()
+//			.formLogin()
+//				.loginPage("/login")
+////				.defaultSuccessUrl("/secure")
+//				.failureUrl("/loginError")
+//				.permitAll()
+//				.and()
+//				
+//				.logout()
+//	            	.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//	            	.logoutSuccessUrl("/")
+//	                .permitAll();
+
 	}
 	
 	@Autowired

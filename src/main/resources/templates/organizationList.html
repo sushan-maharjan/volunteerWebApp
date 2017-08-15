@@ -15,31 +15,31 @@
 	<div th:replace="fragments/header :: header">*********MENU*************</div>
 	
 	<div class="container">
-
+	
 		<!-- Teams -->
-		<div th:if="${not #lists.isEmpty(persons)}">
-			<h2>Persons</h2>
+		<!-- <div th:if="${not #lists.isEmpty(organizations)}"> -->
+			<h2>Organizations</h2>
 			<table class="table table-striped">
 				<thead>
 		        <tr>
-		        	<th>First Name</th>
-		            <th>Last Name</th>
-		            <th>Email</th>
-		            <th>Phone</th>
-		            <th>Edit</th>
+		        	 <th>Name</th>
+		            <!-- <th>Description</th> -->
+		            <th>Status</th>
+		            <th>Projects</th>
 		        </tr>
 		    </thead>
-				<tr th:each="person : ${persons}">
-					<td th:text="${person.firstName}"></td>
-			        <td th:text="${person.lastName}"></td>
-			        <td th:text="${person.email}"></td>
-			        <td th:text="${person.phone}"></td>
-			        <td><a th:href="@{/person/} + ${person.id}">Edit</a></td>
+				<tr th:each="organization : ${organizations}">
+					
+			       <td th:text="${organization.name}"></td>
+			       <!--  <td th:text="${organization.description}"></td> -->
+			        <td th:text="${organization.status}"></td>
+			        <td><a th:href="@{'../organization/' + ${organization.id}}">Edit</a> &nbsp; <a th:href="@{'../organization/delete/' + ${organization.id}}">Delete</a></td>
+
 			    </tr>
 			</table>
-		</div>
+		<!-- </div> -->
 		<!-- Teams -->
-		
+		<a th:href="@{/organization/new}">Create Organization</a>
 	</div><!-- Container -->
 
 </body>
