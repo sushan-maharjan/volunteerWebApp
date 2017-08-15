@@ -31,7 +31,7 @@
 				</thead>
 				<tr th:each="activity : ${activities}">
 					<td th:text="${activity.name}"></td>
-					<td><a th:href="@{'../activity/delete/' + ${activity.id}}">
+					<td><a th:href="@{'../../../activity/delete/' + ${activity.id} + '/project/' + ${project.id}}">
 							<span class="glyphicon glyphicon-remove"></span>
 						</a></td>
 				</tr>
@@ -40,17 +40,17 @@
 		<!-- Activity -->
 
 			<h1>
-				<span th:text="${title}" th:remove="tag">Create</span> Activity
+				New Activity
 			</h1>
 
 			<form method="post" th:action="@{/activity/create}">
 
 				<div class="form-group">
 					<label for="name">Name</label> 
-					<input type="text" class="form-control" th:field="*{activity.name}" required="required" />
+					<input type="text" class="form-control" name="name" id="name" required="required" />
 				</div>
 				<button type="submit" class="btn btn-default">Submit</button>
-				<input type="hidden" class="form-control" name="project_id" id="project_id" th:field="*{project.id}" />
+				<input type="hidden" class="form-control"  th:field="*{project.id}" />
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			</form>
 		</div>

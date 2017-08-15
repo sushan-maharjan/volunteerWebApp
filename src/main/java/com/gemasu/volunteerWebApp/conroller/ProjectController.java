@@ -52,6 +52,26 @@ public class ProjectController {
 		return "project";
 	}
 	
+	@RequestMapping("/new")
+	public String newProject(Model model, Project project){
+		//Get all organizations
+		List<Organization> organizations = projectService.getOrganizations();
+		model.addAttribute("listOrganizations", organizations);
+		model.addAttribute("project", project);
+		model.addAttribute("action", "create");
+		model.addAttribute("title", "Create");
+		return "project";
+	}
+	
+	@RequestMapping("/create")
+	@PostMapping
+	public String create(Model model, Project project, @RequestParam("organizationId") Integer organizationId){
+		Organization org = projectService.getOrganization(organizationId);
+		project.setOrganization(org);
+		projectService.create(project);
+		return "redirect:/project/list";
+	}
+	
 	/*
 	 * 
 	 */

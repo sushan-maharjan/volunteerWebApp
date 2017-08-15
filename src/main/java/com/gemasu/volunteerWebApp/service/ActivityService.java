@@ -14,6 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.gemasu.volunteerWebApp.model.Activity;
 import com.gemasu.volunteerWebApp.model.Organization;
+import com.gemasu.volunteerWebApp.model.Project;
 
 @Service
 public class ActivityService {
@@ -46,5 +47,36 @@ public class ActivityService {
 
 		List<Activity> activities = response.getBody();
 		return activities;
+	}
+	
+	/*
+	 * 
+	 */
+	public void create(Activity activity) {
+		// URL
+		String url = webserviceUrl + "/activity/create";
+		restTemplate.postForObject( url, activity, Activity.class);
+	}
+	
+	/*
+	 * 
+	 */
+	public void deleteById(Integer id) {
+		// URL
+		String url = webserviceUrl + "/activity/delete/{id_activity}";
+
+		// URL Parameters
+		Map<String, String> uriParams = new HashMap<String, String>();
+		uriParams.put("id_activity", id.toString());
+		
+		// Query parameters
+		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url);
+		
+		// Call
+		restTemplate.exchange(builder.buildAndExpand(uriParams).toUri(), 
+				HttpMethod.GET, 
+				null,
+				Void.class);
+
 	}
 }
