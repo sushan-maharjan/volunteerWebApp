@@ -45,7 +45,7 @@ public class ProjectController {
 	/*
 	 * 
 	 */
-	//@PreAuthorize("hasRole('ADMIN')")
+	
 	@RequestMapping("/edit/{id}")
 	public String getOne(Model model, @PathVariable int id){
 		//Get all organizations
@@ -58,7 +58,7 @@ public class ProjectController {
 		model.addAttribute("project",projectService.getOne(id));
 		return "project";
 	}
-	//@PreAuthorize("hasRole('ROLE_ADMIN')")
+	
 	@RequestMapping("/new")
 	public String newProject(Model model, Project project){
 		//Get all organizations
@@ -72,7 +72,7 @@ public class ProjectController {
 	
 	@RequestMapping("/create")
 	@PostMapping
-	@PreAuthorize("hasRole('ADMIN')")
+	
 	public String create(Model model, Project project, @RequestParam("organizationId") Integer organizationId){
 		Organization org = projectService.getOrganization(organizationId);
 		project.setOrganization(org);
@@ -83,7 +83,7 @@ public class ProjectController {
 	/*
 	 * 
 	 */
-	//@PreAuthorize("hasRole('ADMIN')")
+
 	@RequestMapping("/add_activity/{id}")
 	public String showActivity(Model model, @PathVariable int id, Activity activity){
 		model.addAttribute("activity",activity);

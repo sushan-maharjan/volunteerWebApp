@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 
@@ -17,6 +18,7 @@ public class Organization {
 	@Id
 	@GeneratedValue
 	private int id;
+	@NotEmpty
 	private String name;
 
 	private String description;

@@ -1,62 +1,76 @@
 <!DOCTYPE HTML>
-<html 
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <title>Register your Account</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-	<link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
-          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
-          rel="stylesheet" media="screen"/>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
-  	
-        
-</head>
-	<body>
-		<div th:replace="fragments/header :: header">*********MENU*************</div>
-	
-		<div class="container">
-		<h1><span th:text="${title}" th:remove="tag">Create</span> Info</h1>
-		
-		<form method="post"  th:action="@{/createUser}">
-		  <div class="form-group">
-		    <label for="firstName">First Name</label>
-		    <input type="text" class="form-control"  th:field="*{user.firstName}" required="required"/>
-		  </div>
-		  <div class="form-group">
-		    <label for="lastName">Last Name</label>
-		    <input type="text" class="form-control" id="description" th:field="*{user.lastName}"/>
-		  </div>
-		  <div class="form-group">
-		    <label for="email">Email</label>
-		    <input type="email" class="form-control" th:field="*{user.email}" required="required"/>
-		  </div>
-		  
-		  <div class="form-group">
-		    <label for="username">UserName</label>
-		    <input type="text" class="form-control" th:field="*{user.username}" required="required" th:readonly="${readOnly}"/>
-		  </div>
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-		  <div class="form-group">
-		    <label for="password">Password</label>
-		    <input type="password" class="form-control" th:field="*{user.password}" required="required" />
-		  </div>
-		  
-		   <!-- <div class="form-group">
+
+</head>
+<body>
+	<div th:replace="fragments/header :: header">*********MENU*************</div>
+
+	<div class="container">
+		<h1>
+			<span th:text="${title}" th:remove="tag">Create</span> Info
+		</h1>
+
+		<form method="post" th:action="@{/createUser}" th:object="${user}">
+			<div class="form-group">
+				<label for="firstName">First Name</label> <input type="text"
+					class="form-control" th:field="*{firstName}" />
+				<p th:if="${#fields.hasErrors('firstName')}"
+					th:errors="*{firstName}">Please fill this out</p>
+			</div>
+			<div class="form-group">
+				<label for="lastName">Last Name</label> <input type="text"
+					class="form-control" id="description" th:field="*{lastName}" />
+				<p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Please
+					fill this out</p>
+			</div>
+			<div class="form-group">
+				<label for="email">Email</label> <input type="text"
+					class="form-control" th:field="*{email}" />
+				<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Please
+					fill out valid email</p>
+			</div>
+
+			<div class="form-group">
+				<label for="username">UserName</label> <input type="text"
+					class="form-control" th:field="*{username}"
+					th:readonly="${readOnly}" />
+				<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Cannot
+					be empty</p>
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label> <input type="password"
+					class="form-control" th:field="*{password}" />
+			</div>
+
+			<!-- <div class="form-group">
 		    <label for="repeatPassword">Password</label>
-		    <input type="password" class="form-control" th:field="*{user.passwordConfirm}" required="required" />
-		  </div>
-		   -->
-		  <button type="submit" class="btn btn-default">Submit</button>
-		  <input type="hidden" class="form-control" th:field="*{user.id}"/>
+		    <input type="password" class="form-control" th:field="*{user.passwordConfirm}"  />
+		  		</div> -->
+		   
+
+			<button type="submit" class="btn btn-default">Submit</button>
+			<input type="hidden" class="form-control" th:field="*{id}" />
 		</form>
-		<br/>
+		<br />
 		<div class="btn btn-default" th:if="${readOnly}">
-			<a th:href="@{'/deleteUser/'+${user.username}}">Deactivate your Account</a>
+			<a th:href="@{'/deleteUser/'+${username}}">Deactivate your
+				Account</a>
 		</div>
-	</div><!-- Container -->
+	</div>
 
 </body>
 </html>

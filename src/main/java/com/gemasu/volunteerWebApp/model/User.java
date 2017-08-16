@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -27,14 +28,15 @@ public class User {
 	@NotEmpty
 	@Column(name="lastName")
 	private String lastName;
-
+	@NotEmpty
+	@Email
 	private String email;
 	@Column(name="hours")
 	
 	private String noOfHoursVolunteered;
-	@NotNull
+	@NotEmpty
 	private String username;
-	
+	@NotEmpty
     private String password;
     @Transient
     private String passwordConfirm;
