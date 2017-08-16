@@ -12,7 +12,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
@@ -25,8 +25,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.antMatchers("/webjars/**").permitAll()
 				.antMatchers("/static/**", "/", "/home", "/index", "/css/**", "/fonts/**", "/js/**", "/images/**", "**/favicon.ico").permitAll()
 				//.antMatchers("/static/**", "/css/**", "/fonts/**", "/js/**", "/images/**", "**/favicon.ico").anonymous()
-				.antMatchers("/","/register","/home","/login","/createUser","/project/public/").anonymous()
-				//.antMatchers("/project/**").hasRole("ADMIN")
+				.antMatchers("/","/register","/home","/login","/createUser","/project/public/**").permitAll()
+				.antMatchers("/project/**").hasRole("ADMIN")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
