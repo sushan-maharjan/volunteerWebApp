@@ -28,6 +28,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.antMatchers("/","/register","/home","/login","/createUser","/project/public/**").permitAll()
 				
 				.antMatchers("/admin/**").hasRole("ADMIN")
+				.antMatchers("/project/**").hasRole("ADMIN")
+				.antMatchers("/success/**").hasRole("MEMBER")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
@@ -42,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	            	.logoutSuccessUrl("/")
 	                .permitAll();
 
-	}
+	} 
 	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{

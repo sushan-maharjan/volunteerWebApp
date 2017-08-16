@@ -13,7 +13,7 @@
 <body>
 <div th:replace="fragments/header :: header">*********MENU*************</div>
 	<div th:if="${not #lists.isEmpty(activities)}">
-			<h2>Projects</h2>
+			<h2>Activities</h2>
 			<table class="table table-striped">
 				<thead>
 		        <tr>
@@ -37,7 +37,7 @@
 			     <tr>
                     <td  class="btn btn-warning"><a th:href="@{'../' + ${project.id}}"><i class="fa fa-angle-left"></i> Back to Project Details </a></td>
                     <td class="hidden-xs"></td>
-                   <td class="btn btn-success"><a th:href="@{'../project/success/' + ${project.id}}" >Proceed to Application <i class="fa fa-angle-right"></i></a></td>
+                   <td class="btn btn-success"><a th:href="@{'/project/success/' + ${project.id}}" sec:authorize="isAuthenticated()">Proceed to Application <i class="fa fa-angle-right"></i></a></td>
                 </tr> 
 			</table>
 		</div>

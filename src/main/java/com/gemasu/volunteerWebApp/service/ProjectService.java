@@ -115,4 +115,32 @@ public class ProjectService {
 	    restTemplate.postForObject( url, project, Project.class);
 
 	}
+	
+	/*
+	 * Get project object by id
+	 * 
+	 * @Param	id	Integer Project id
+	 * @Return	Project Object
+	 */
+	public void addUserToProject(Integer id, String username) {
+		// URL
+		String url = webserviceUrl + "/project/success/{id_project}/{username}";
+
+		// URL Parameters
+		Map<String, String> uriParams = new HashMap<String, String>();
+		uriParams.put("id_project", id.toString());
+		uriParams.put("username", username);
+
+		// Query parameters
+		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url);
+
+		//System.out.println(builder.buildAndExpand(uriParams).toUri());
+
+		restTemplate.exchange(builder.buildAndExpand(uriParams).toUri(),
+				HttpMethod.GET, null, Void.class);
+
+	}
+	
+	
+	
 }
