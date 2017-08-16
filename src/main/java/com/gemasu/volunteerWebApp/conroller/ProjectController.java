@@ -35,6 +35,8 @@ public class ProjectController {
 		model.addAttribute("projects", projectService.getAll());
 		return "projectList";
 	}
+	
+	
 	@RequestMapping("/")
 	public String DisplayAllProject(Model model){
 		model.addAttribute("projects", projectService.getAll());
@@ -56,7 +58,7 @@ public class ProjectController {
 		model.addAttribute("project",projectService.getOne(id));
 		return "project";
 	}
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping("/new")
 	public String newProject(Model model, Project project){
 		//Get all organizations
@@ -102,7 +104,7 @@ public class ProjectController {
 		return "activities";
 	}
 		
-	@RequestMapping("/{id}")
+	@RequestMapping("/public/{id}")
 	public String getaProject(Model model, @PathVariable int id){
 		/*System.out.println("ID: " + id);
 		model.addAttribute("action", "register");

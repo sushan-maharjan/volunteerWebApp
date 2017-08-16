@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.antMatchers("/webjars/**").permitAll()
 				.antMatchers("/static/**", "/", "/home", "/index", "/css/**", "/fonts/**", "/js/**", "/images/**", "**/favicon.ico").permitAll()
 				//.antMatchers("/static/**", "/css/**", "/fonts/**", "/js/**", "/images/**", "**/favicon.ico").anonymous()
-				.antMatchers("/","/register","/home","/login","/createUser").permitAll()
+				.antMatchers("/","/register","/home","/login","/createUser","/project/public/").anonymous()
 				//.antMatchers("/project/**").hasRole("ADMIN")
 				.anyRequest().authenticated()
 				.and()

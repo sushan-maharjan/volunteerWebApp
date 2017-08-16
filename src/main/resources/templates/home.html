@@ -46,7 +46,7 @@
 		    </thead>
 				<tr th:each="project : ${projects}">
 						 <td>
-			        	<a th:href="@{'../project/' + ${project.id}}"> view</a>
+			        	<a th:href="@{'../project/public/' + ${project.id}}"> view</a>
 			        </td>
 			        <td th:text="${project.name}"></td>
 			        <td th:text="${project.category}"></td>

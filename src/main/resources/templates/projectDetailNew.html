@@ -62,7 +62,7 @@
   <div class="well">
   <a  class="btn btn-warning" th:href="@{'../project/getactivites/' + ${project.id}}"> <i class="fa fa-angle-left"></i> View Activities </a>
  	 <span class="hidden-xs"></span>
-     <a  class="btn btn-success" th:href="@{'../project/success/' + ${project.id}}" ><i class="fa fa-angle-right"></i> Volunteer</a>
+     <a  class="btn btn-success" th:href="@{'../success/' + ${project.id}}" sec:authorize="isAuthenticated()"><i class="fa fa-angle-right"></i> Volunteer</a>
  
   
 </div>
