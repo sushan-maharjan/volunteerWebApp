@@ -25,38 +25,19 @@
 <p th:text="${project.organization.name}"></p>
 </div>
 <div class="well">
-  <div class="container">
-  
+ 
   <h2>Organization Detail</h2>
   
   <p> Our Projects are managed and owned by many Organizations and bellow is the organization that structured this Project.</p>
-  
-  <div class="media">
-    <div class="media-left">
-      <img src="/images/mumlogo.jpg" class="media-object" style="width:200px"/> </div>
-    
-    <div class="media-body">
-      <h4 class="media-heading">Description</h4>
-      <p th:text="${project.organization.description}"></p>
+   	<p th:text="${project.organization.description}"></p>
     </div>
-  </div>
- 
-   </div>
-  </div>
+
   <div class="well">
-   <div class="container">
+
  <h2> Project Description:</h2>
- <div class="media">
-    <div class="media-left">
-      <img src="resources/images/mumlogo.jpg" class="media-object" style="width:200px"/> </div>
-    
-    <div class="media-body">
-      <h4 class="media-heading">Why Volunteer in this Project</h4>
+
       <p th:text="${project.description}"></p> </div>
-    </div>
-  </div>
- 
- </div>
+   
  
  
   <div class="well">
