@@ -21,6 +21,7 @@ public class Project {
 	private Organization organization;
 	private Category category;
 	private Status status;
+	private String description;
 
 	public int getId() {
 		return id;
@@ -101,6 +102,15 @@ public class Project {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+	
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	public Project() {
 		
@@ -111,7 +121,10 @@ public class Project {
 	public String toString() {
 		return "Project [id=" + id + ", maxNumOfMemebers=" + maxNumOfMemebers + ", name=" + name + ", StartDate="
 				+ StartDate + ", endDate=" + endDate + ", user=" + user + ", activities=" + activities
-				+ ", organization=" + organization + ", category=" + category + ", status=" + status + "]";
+				+ ", organization=" + organization + ", category=" + category + ", status=" + status + ", description="
+				+ description + "]";
 	}
+
+	
 
 }

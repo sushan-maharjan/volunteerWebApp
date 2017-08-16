@@ -21,44 +21,26 @@
 		    
 		    <div class="navbar-header">
 
-		      <a class="navbar-brand" href="#">U Volunteer</a>
-
-		      <a class="navbar-brand" href="#">Volunteer App</a>
+		      <a class="navbar-brand" href="/">Volunteer App</a>
 
 		    </div>
-		    
+		 
 		    <ul class="nav navbar-nav">
 		    
-		      <li class="active"><a href="/">Home</a></li>
-		      
-		      <li class="dropdown"  sec:authorize="isAuthenticated()">
-		        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Projects <span class="caret"></span></a>
-		        <ul class="dropdown-menu">
-
-		          <li><a href="/order/newOrder">First </a></li>
-
-		          <li><a href="/project/">List	</a></li>
-
-		        </ul>
-		      </li>
-		      
+		      <li class="active"><a href="/">Home</a></li>		
+		  
 		      <li class="dropdown" sec:authorize="hasRole('ROLE_ADMIN')">
 		        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin
 		        <span class="caret"></span></a>
 		        <ul class="dropdown-menu">
 
-		          <li><a href="/project">	 List Projects	</a></li>
-		          <li><a th:href="@{/addProject}">Create Project	</a></li>
-		          <li><a href="/project/"> Update Project	</a></li>
-		          <li><a href="/project/delete">Delete Project	</a></li>
-
-		          <li><a href="/project/list">	 List of Projects	</a></li>
-		          <li><a href="/project/new">Create Project	</a></li>
-
+		    	   <li><a href="/project/new">Create Project	</a></li>
+		    	    <li><a href="/project/list"> List Projects	</a></li>	
 		        </ul>
 		      </li>
+		
 		    </ul>
-		    
+		     
 		    <ul class="nav navbar-nav navbar-right">
 		      <li sec:authorize="isAuthenticated()"><a href="/viewUser"> <span class="glyphicon glyphicon-pencil"></span> My Profile	</a></li>
 		      <li sec:authorize="isAnonymous()">	<a href="/register"> <span class="glyphicon glyphicon-user"></span> 	Sign Up	</a></li>

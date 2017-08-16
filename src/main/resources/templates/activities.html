@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Volunteer App - Project List</title>
+<title>Spring Boot Thymeleaf Hello World Example</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
@@ -11,37 +11,21 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>          
 </head>
 <body>
-
-	<div th:replace="fragments/header :: header">*********MENU*************</div>
-	
-	<div class="container">
-
-		<!-- List -->
-		<div th:if="${not #lists.isEmpty(projects)}">
+<div th:replace="fragments/header :: header">*********MENU*************</div>
+	<div th:if="${not #lists.isEmpty(activities)}">
 			<h2>Projects</h2>
 			<table class="table table-striped">
 				<thead>
 		        <tr>
-		        	<th> </th>
+		        
 		        	<th>Name</th>
-		        	<th>Category</th>
-		        	<th>Status</th>
-		        	<th>Start Date</th>
-		        	<th>End Date</th>
-		        	<th></th>
 		        	
-
-		        </tr>
+		        	 </tr>
 		    </thead>
-				<tr th:each="project : ${projects}">
-						 <td>
-			        	<a th:href="@{'../project/' + ${project.id}}"> view</a>
-			        </td>
-			        <td th:text="${project.name}"></td>
-			        <td th:text="${project.category}"></td>
-			        <td th:text="${project.status}"></td>
-			        <td th:text="${project.StartDate}"></td>
-			        <td th:text="${project.endDate}"></td>
+				<tr th:each="activity : ${activities}">
+						
+			        <td th:text="${activity.name}"></td>
+			        
 			        <td>
 			        	<a th:href="@{'../project/edit/' + ${project.id}}"> <span class="glyphicon glyphicon-pencil"></span></a>
 			        </td>
@@ -52,9 +36,7 @@
 			    </tr>
 			</table>
 		</div>
-		<!-- List -->
-		
-	</div><!-- Container -->
+
 
 </body>
 </html>

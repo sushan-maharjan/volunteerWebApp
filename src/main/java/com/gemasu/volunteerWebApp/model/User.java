@@ -30,6 +30,7 @@ public class User {
 
 	private String email;
 	@Column(name="hours")
+	
 	private String noOfHoursVolunteered;
 	@NotNull
 	private String username;

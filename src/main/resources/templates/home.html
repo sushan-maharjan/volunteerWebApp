@@ -21,5 +21,46 @@
 		<h1 th:text="'Welcome, ' + ${user}"></h1>
 	</div>
 
+
+	
+	<!-- Body -->
+	
+	<div class="container">
+	
+		<!-- Products -->
+		<div th:if="${not #lists.isEmpty(projects)}">
+			<h2>Our projects</h2>
+			<table class="table table-striped">
+				<thead>
+		        <tr>
+		        	<th> </th>
+		        	<th>Name</th>
+		        	<th>Category</th>
+		        	<th>Status</th>
+		        	<th>Start Date</th>
+		        	<th>End Date</th>
+		        	
+		        	
+
+		        </tr>
+		    </thead>
+				<tr th:each="project : ${projects}">
+						 <td>
+			        	<a th:href="@{'../project/' + ${project.id}}"> view</a>
+			        </td>
+			        <td th:text="${project.name}"></td>
+			        <td th:text="${project.category}"></td>
+			        <td th:text="${project.status}"></td>
+			        <td th:text="${project.StartDate}"></td>
+			        <td th:text="${project.endDate}"></td>
+			       
+
+			    </tr>
+			</table>
+		</div>
+		<!-- Orders -->
+		
+	</div><!-- Container -->
+	
 </body>
 </html>

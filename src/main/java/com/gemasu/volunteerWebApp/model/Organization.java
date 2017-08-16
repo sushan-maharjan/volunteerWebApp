@@ -18,7 +18,16 @@ public class Organization {
 	@GeneratedValue
 	private int id;
 	private String name;
-	@Transient 
+
+	private String description;
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	private List<Project> projects = new ArrayList<>();
 	OrganizationStatus status;
 	
@@ -60,7 +69,8 @@ public class Organization {
 
 	@Override
 	public String toString() {
-		return "Organization [id=" + id + ", name=" + name + ", projects=" + projects + ", status=" + status + "]";
+		return "Organization [id=" + id + ", name=" + name + ", description=" + description + ", projects=" + projects
+				+ ", status=" + status + "]";
 	}
 
 	
