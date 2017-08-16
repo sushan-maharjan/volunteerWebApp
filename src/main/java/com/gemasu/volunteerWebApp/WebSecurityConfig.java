@@ -25,11 +25,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.antMatchers("/webjars/**").permitAll()
 				.antMatchers("/static/**", "/", "/index", "/css/**", "/fonts/**", "/js/**", "/images/**", "**/favicon.ico").permitAll()
 				
-				.antMatchers("/","/register","/home","/login","/createUser","/project/public/**").permitAll()
+				.antMatchers("/","/register","/home","/success","/login","/createUser","/project/public/**").permitAll()
 				
 				.antMatchers("/admin/**").hasRole("ADMIN")
-				.antMatchers("/project/**").hasRole("ADMIN")
-				.antMatchers("/success/**").hasRole("MEMBER")
+				.antMatchers("/project/**").hasRole("MEMBER")
+				//.antMatchers("/success/**").hasRole("MEMBER")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()

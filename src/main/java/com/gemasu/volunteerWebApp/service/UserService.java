@@ -21,7 +21,7 @@ public class UserService {
 //	private BCryptPasswordEncoder bCryptPassword;
 	
 	public User save(User user){
-		Role role = new Role(user, "Member");
+		Role role = new Role(user, "ROLE_MEMBER");
 		Set<Role> r = new HashSet<Role>();
 		r.add(role);
 		//user.setPassword(bCryptPassword.encode(user.getPassword()));
