@@ -1,5 +1,7 @@
 package com.gemasu.volunteerWebApp.conroller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,8 +22,11 @@ public class HomeController {
 	ProjectService projectService;
 	
 	@GetMapping({"/", "/index", "/home"})
-	public String homePage(Model model){
+	public String homePage(Model model, Principal principal){
 		model.addAttribute("projects", projectService.getAll());
+		if(principal!=null){
+			model.addAttribute("user", principal.getName());
+		}
 		return "home";
 
 	}
