@@ -18,7 +18,7 @@
 		<div class="container">
 		<h1><span th:text="${title}" th:remove="tag">Create</span> Project</h1>
 		
-		<form method="post"  th:action="@{/project/} + ${action}">
+		<form method="post"  th:action="@{/admin/project} + ${action}">
 		
 		<div class="form-group">
 		    <label for="category">Category</label>

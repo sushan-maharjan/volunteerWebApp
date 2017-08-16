@@ -30,14 +30,14 @@ public class ActivityController {
 		activity.setProject(projectService.getOne(projectId));
 		System.out.println("Activity: " + activity);
 		activityService.create(activity);
-		return "redirect:/project/list";
+		return "redirect:/admin/projectlist";
 	}
 	
 	@RequestMapping("/delete/{id_activity}/project/{id_project}")
 	public String create(@PathVariable("id_activity") int activityId, 
 						@PathVariable("id_project") int projectId) {
 		activityService.deleteById(activityId);
-		return "redirect:/project/add_activity/" + projectId;
+		return "redirect:/admin/add_activity/" + projectId;
 	}
 	
 }
