@@ -25,8 +25,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.antMatchers("/webjars/**").permitAll()
 				.antMatchers("/static/**", "/", "/home", "/index", "/css/**", "/fonts/**", "/js/**", "/images/**", "**/favicon.ico").permitAll()
 				//.antMatchers("/static/**", "/css/**", "/fonts/**", "/js/**", "/images/**", "**/favicon.ico").anonymous()
-				.antMatchers("/","/register","/home","/login","/createUser","/project/public/**").permitAll()
+				.antMatchers("/","/register","/project/","/project/success/**","/home","/login","/createUser","/project/public/**").permitAll()
 				.antMatchers("/project/**").hasRole("ADMIN")
+				.antMatchers("/success/**").hasRole("MEMBER")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
@@ -41,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	            	.logoutSuccessUrl("/")
 	                .permitAll();
 
-	}
+	} 
 	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{

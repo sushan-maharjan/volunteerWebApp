@@ -18,9 +18,8 @@
  <h4 th:text="${project.name}"></h4>
  
  <div class="well">
- <h4> maximum number of Volunteers:  </h4><p th:text="${project.maxNumOfMemebers}"></p></div>
- <div class="well">
-<h4> Volunteers:</h4> <p th:text="${project.user}"></p></div>
+ <h4> Project Status  </h4><p th:text="${project.status}"></p></div>
+ 
 <div class="well">
 <h4>  Organization name : </h4>
 <p th:text="${project.organization.name}"></p>
@@ -61,9 +60,9 @@
  
  
   <div class="well">
-  <a  class="btn btn-warning" th:href="@{'../project/getactivites/' + ${project.id}}"> <i class="fa fa-angle-left"></i> View Activities </a>
+  <a  class="btn btn-warning" th:href="@{'../public/getactivites/' + ${project.id}}"> <i class="fa fa-angle-left"></i> View Activities </a>
  	 <span class="hidden-xs"></span>
-     <a  class="btn btn-success" th:href="@{'../success/' + ${project.id}}" sec:authorize="isAuthenticated()"><i class="fa fa-angle-right"></i> Volunteer</a>
+     <a  class="btn btn-success" th:href="@{'../success/' + ${project.id}}" sec:authorize="isAuthenticated()" ><i class="fa fa-angle-right"></i> Volunteer</a>
  
   
 </div>

@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -94,7 +96,7 @@ public class ProjectController {
 		return "projectActivity";
 	}
 	
-	@RequestMapping("/getactivites/{id}")
+	@RequestMapping("/public/getactivites/{id}")
 	public String getActivities(Model model, @PathVariable int id, Activity activity){
 		model.addAttribute("activity",activity);
 		//Retrieve project
@@ -115,8 +117,15 @@ public class ProjectController {
 		System.out.println("redirecting to projectDetail.html");
 		return "projectDetailNew";
 	}
+	@PreAuthorize("hasRole('MEMBER')")
 	@RequestMapping("/success/{id}")
 	public String successful(Model model, @PathVariable int id){
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String userName = authentication.getName();
+		projectService.addUserToProject(id, userName);
+		
+		//Person person = personService.findById(personService.findByEmail(userName).get(0).getId());
+		
 		return "SuccessfulApplication";
 	}
 }
