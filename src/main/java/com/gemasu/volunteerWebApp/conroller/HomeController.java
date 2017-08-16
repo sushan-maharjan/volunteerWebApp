@@ -19,7 +19,7 @@ public class HomeController {
 		if(principal!=null){
 			model.addAttribute("user", principal.getName());
 		}
-		return "home";
+		return "projectList";
 	}
 
 	

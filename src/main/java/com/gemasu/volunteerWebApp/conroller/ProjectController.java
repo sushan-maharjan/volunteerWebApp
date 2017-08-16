@@ -35,7 +35,11 @@ public class ProjectController {
 		model.addAttribute("projects", projectService.getAll());
 		return "projectList";
 	}
-	
+	@RequestMapping("/")
+	public String DisplayAllProject(Model model){
+		model.addAttribute("projects", projectService.getAll());
+		return "home";
+	}
 	/*
 	 * 
 	 */
