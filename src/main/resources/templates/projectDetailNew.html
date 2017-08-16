@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Spring Boot Thymeleaf Hello World Example</title>
+<title>Project Details </title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
@@ -13,17 +13,58 @@
 <body>
 <div th:replace="fragments/header :: header">*********MENU*************</div>
 
- Project Name:  <p th:text="${project.name}"></p>
- mazimum number of Volunteers:  <p th:text="${project.maxNumOfMemebers}"></p>
- Volunteers: <p th:text="${project.user}"></p>
-  Organization name : <p th:text="${project.organization.name}"></p>
-   Organization Details: <p th:text="${project.organization.description}"></p>
-  Project Description: <p th:text="${project.description}"></p>
-  <a th:href="@{'../project/getactivites/' + ${project.id}}"> view Activities in this project</a>
+<h2> Project Name:</h2> 
+ <h4 th:text="${project.name}"></h4>
+ 
+ <div class="well">
+ <h4> maximum number of Volunteers:  </h4><p th:text="${project.maxNumOfMemebers}"></p></div>
+ <div class="well">
+<h4> Volunteers:</h4> <p th:text="${project.user}"></p></div>
+<div class="well">
+<h4>  Organization name : </h4>
+<p th:text="${project.organization.name}"></p>
+</div>
+<div class="well">
+  <div class="container">
   
+  <h2>Organization Detail</h2>
   
-  <button type="submit" class="btn btn-default">Apply</button>
+  <p> Our Projects are managed and owned by many Organizations and bellow is the organization that structured this Project.</p>
   
-
+  <div class="media">
+    <div class="media-left">
+      <img src="/images/mumlogo.jpg" class="media-object" style="width:200px"/> </div>
+    
+    <div class="media-body">
+      <h4 class="media-heading">Description</h4>
+      <p th:text="${project.organization.description}"></p>
+    </div>
+  </div>
+ 
+   </div>
+  </div>
+  <div class="well">
+   <div class="container">
+ <h2> Project Description:</h2>
+ <div class="media">
+    <div class="media-left">
+      <img src="resources/images/mumlogo.jpg" class="media-object" style="width:200px"/> </div>
+    
+    <div class="media-body">
+      <h4 class="media-heading">Why Volunteer in this Project</h4>
+      <p th:text="${project.description}"></p> </div>
+    </div>
+  </div>
+ 
+ </div>
+ 
+ 
+  <div class="well">
+  <a  class="btn btn-warning" th:href="@{'../project/getactivites/' + ${project.id}}"> <i class="fa fa-angle-left"></i> View Activities </a>
+ 	 <span class="hidden-xs"></span>
+     <a  class="btn btn-success" th:href="@{'../project/'}" ><i class="fa fa-angle-right"></i> Volunteer</a>
+ 
+  
+</div>
 </body>
 </html>

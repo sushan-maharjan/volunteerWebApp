@@ -35,7 +35,11 @@ public class ProjectController {
 		model.addAttribute("projects", projectService.getAll());
 		return "projectList";
 	}
-	
+	@RequestMapping("/")
+	public String DisplayAllProject(Model model){
+		model.addAttribute("projects", projectService.getAll());
+		return "home";
+	}
 	/*
 	 * 
 	 */
@@ -97,10 +101,7 @@ public class ProjectController {
 		model.addAttribute("activities",activityService.getActivityByProject(id));
 		return "activities";
 	}
-	
-	
-	
-	
+		
 	@RequestMapping("/{id}")
 	public String getaProject(Model model, @PathVariable int id){
 		/*System.out.println("ID: " + id);
@@ -110,7 +111,7 @@ public class ProjectController {
 		
 		
 		System.out.println("redirecting to projectDetail.html");
-		return "projectDetailnew";
+		return "projectDetailNew";
 	}
 	@RequestMapping("/{id}/successful")
 	public String successful(Model model, @PathVariable int id){
