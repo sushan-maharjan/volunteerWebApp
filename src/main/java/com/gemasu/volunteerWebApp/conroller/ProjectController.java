@@ -113,7 +113,7 @@ public class ProjectController {
 		System.out.println("redirecting to projectDetail.html");
 		return "projectDetailNew";
 	}
-	@RequestMapping("/{id}/successful")
+	@RequestMapping("/success/{id}")
 	public String successful(Model model, @PathVariable int id){
 		return "SuccessfulApplication";
 	}
