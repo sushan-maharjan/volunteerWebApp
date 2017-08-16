@@ -57,11 +57,13 @@ public class OrganizationService {
 
 	}
 	
-	public void delete(){
-		
+	public void delete(Organization organization){
+		String url = webserviceUrl + "/organization/delete";
+		restTemplate.delete ( url, Organization.class );
 	}
 	
 	public void update(Organization org){
-		
+		String url = webserviceUrl + "/organization/update";
+		restTemplate.put ( url, org, Organization.class);
 	}
 }
